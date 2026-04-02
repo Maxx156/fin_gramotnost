@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Финансовая грамотность для начинающих: основы управления деньгами, бюджет, сбережения, инвестиции, калькулятор сложного процента. Простые и понятные уроки.">
+  <title>FinStart | Финансовая грамотность для начинающих</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f9ff;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* custom container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header & navigation */
+    header {
+      background: white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(2px);
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1f7b4d, #2c9e6e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .logo i {
+      background: none;
+      color: #2c9e6e;
+      margin-right: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c3e4e;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #1f7b4d;
+    }
+
+    /* buttons */
+    .btn-primary {
+      background: #1f7b4d;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 8px rgba(31, 123, 77, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #0f5e3a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(31, 123, 77, 0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #1f7b4d;
+      color: #1f7b4d;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: #1f7b4d10;
+      transform: scale(0.98);
+    }
+
+    /* hero */
+    .hero {
+      padding: 70px 0 60px;
+      background: linear-gradient(120deg, #ffffff 0%, #f0f7f2 100%);
+    }
+
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #1a2c3e;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #3a5a6e;
+      margin-bottom: 32px;
+      max-width: 550px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .stat-item {
+      font-weight: 600;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1f7b4d;
+    }
+
+    /* cards section */
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 48px;
+      color: #1a2c3e;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #2c9e6e;
+      margin: 16px auto 0;
+      border-radius: 4px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 32px 24px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-icon {
+      font-size: 2.8rem;
+      color: #1f7b4d;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #4a6272;
+    }
+
+    /* calculator block */
+    .calc-wrapper {
+      background: white;
+      border-radius: 32px;
+      padding: 40px;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .input-group input {
+      padding: 14px 18px;
+      border: 1px solid #dce5ec;
+      border-radius: 24px;
+      font-size: 1rem;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #1f7b4d;
+      box-shadow: 0 0 0 3px rgba(31, 123, 77, 0.2);
+    }
+
+    .calc-result {
+      background: #eef3ec;
+      padding: 20px;
+      border-radius: 24px;
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .result-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1f7b4d;
+      word-break: break-word;
+    }
+
+    /* FAQ accordion */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      border: 1px solid #e9edf2;
+    }
+
+    .faq-question {
+      background: white;
+      padding: 20px 28px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.1s;
+    }
+
+    .faq-question:hover {
+      background: #f9fbfd;
+    }
+
+    .faq-question i {
+      color: #1f7b4d;
+      transition: transform 0.2s;
+    }
+
+    .faq-answer {
+      padding: 0 28px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s;
+      background: #fefefe;
+      color: #2c3e50;
+      border-top: 0px solid #e2e8f0;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 0 28px 24px 28px;
+      border-top-width: 1px;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    /* resources */
+    .resources-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .resource-card {
+      background: white;
+      border-radius: 28px;
+      padding: 20px 28px;
+      width: 220px;
+      text-align: center;
+      transition: all 0.2s;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+      border: 1px solid #eef2f6;
+    }
+
+    .resource-card i {
+      font-size: 2rem;
+      color: #1f7b4d;
+      margin-bottom: 12px;
+    }
+
+    .resource-card h4 {
+      margin-bottom: 8px;
+    }
+
+    .resource-card a {
+      text-decoration: none;
+      color: #1f7b4d;
+      font-weight: 500;
+    }
+
+    /* footer */
+    footer {
+      background: #0e2a2f;
+      color: #cbd5e1;
+      padding: 40px 0;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .footer-disclaimer {
+      font-size: 0.8rem;
+      max-width: 700px;
+      margin: 16px auto 0;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .calc-wrapper {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <i class="fas fa-coins"></i> FinStart
+      </div>
+      <ul class="nav-links">
+        <li><a href="#principles">Принципы</a></li>
+        <li><a href="#calculator">Калькулятор</a></li>
+        <li><a href="#faq">Вопросы</a></li>
+        <li><a href="#resources">Ресурсы</a></li>
+      </ul>
+      <div>
+        <button class="btn-outline" id="tipBtn"><i class="fas fa-lightbulb"></i> Совет дня</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1>Управляй деньгами <br>уверенно с нуля</h1>
+        <p>Простые шаги к финансовой свободе: бюджет, накопления, инвестиции. Никакой сложной теории — только то, что работает.</p>
+        <button class="btn-primary" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'});">
+          <i class="fas fa-chart-line"></i> Попробовать калькулятор
+        </button>
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-number">50/30/20</span><br>правило бюджета</div>
+          <div class="stat-item"><span class="stat-number">6 мес.</span><br>подушка безопасности</div>
+        </div>
+      </div>
+      <div style="flex:0.8; text-align:center;">
+        <i class="fas fa-hand-holding-usd" style="font-size: 12rem; color:#d0e6d9; opacity:0.7;"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Основные принципы -->
+  <section id="principles">
+    <div class="container">
+      <div class="section-title">4 столпа финансовой грамотности</div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-wallet"></i></div>
+          <h3>Бюджет 50/30/20</h3>
+          <p>50% на necessities, 30% на желания, 20% на сбережения и долги. Простой способ держать финансы под контролем.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-piggy-bank"></i></div>
+          <h3>Подушка безопасности</h3>
+          <p>Накопите сумму на 3–6 месяцев жизни. Это защитит от неожиданностей: потери работы или поломок.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-chart-simple"></i></div>
+          <h3>Сложный процент</h3>
+          <p>Ваши деньги начинают работать на вас. Чем раньше начнёте, тем мощнее эффект «снежного кома».</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-arrow-trend-down"></i></div>
+          <h3>Умные долги</h3>
+          <p>Избегайте долгов под высокий процент. Кредиты только на активы или в крайнем случае — и всегда с планом.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Калькулятор сложного процента -->
+  <section id="calculator" style="background: #f0f5f0;">
+    <div class="container">
+      <div class="section-title">📈 Калькулятор сложного процента</div>
+      <div class="calc-wrapper">
+        <p style="margin-bottom: 24px; text-align:center;">Узнайте, как регулярные вложения могут вырасти со временем.</p>
+        <div class="input-group">
+          <label><i class="fas fa-coins"></i> Первоначальная сумма (₽)</label>
+          <input type="number" id="initialAmount" placeholder="Например: 10000" value="10000">
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-calendar-plus"></i> Ежемесячный взнос (₽)</label>
+          <input type="number" id="monthlyContribution" placeholder="Сколько докладываете каждый месяц" value="3000">
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-clock"></i> Количество лет</label>
+          <input type="number" id="years" placeholder="Горизонт инвестиций" value="10">
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-percent"></i> Годовая ставка (%)</label>
+          <input type="number" id="interestRate" placeholder="Например: 12" value="12" step="0.5">
+        </div>
+        <button class="btn-primary" id="calculateBtn" style="width:100%; justify-content:center;"><i class="fas fa-calculator"></i> Рассчитать будущий капитал</button>
+        <div class="calc-result" id="calcResultBlock">
+          <strong>💰 Через указанный период вы накопите:</strong>
+          <div class="result-value" id="futureValue">— ₽</div>
+          <small style="display: block; margin-top: 8px;">*Ежемесячное пополнение + капитализация процентов (сложный процент)</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Часто задаваемые вопросы (аккордеон) -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-title">❓ Частые вопросы новичков</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>С чего начать, если я ничего не знаю о финансах?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Начните с учёта доходов и расходов в течение месяца. Используйте простое приложение или таблицу. Затем внедрите правило 50/30/20. Постепенно создайте накопительный счёт для «подушки безопасности».
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Что такое сложный процент и почему это важно?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Сложный процент — это начисление процентов не только на первоначальную сумму, но и на уже накопленные проценты. Со временем ваш капитал растёт экспоненциально. Именно поэтому даже небольшие регулярные вложения творят чудеса на дистанции 10+ лет.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Сколько нужно откладывать в месяц?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Хотя бы 10-20% от дохода. Если получается больше — отлично. Главное — делать это системно, сразу после зарплаты («заплатите себе первым»). Даже 2000 рублей в месяц, инвестированные под 12% годовых, через 20 лет превратятся в ~2 млн рублей.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Нужно ли инвестировать, если у меня маленькая зарплата?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Да, начинать можно с любой суммы. Благодаря сложному проценту даже 500–1000 рублей в месяц со временем дадут результат. Главное — регулярность и дисциплина. Начните с микрокопительных сервисов или ETF.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Полезные ресурсы -->
+  <section id="resources" style="background: #fafcf8;">
+    <div class="container">
+      <div class="section-title">📚 Книги и ресурсы для старта</div>
+      <div class="resources-grid">
+        <div class="resource-card">
+          <i class="fas fa-book-open"></i>
+          <h4>Богатый папа, бедный папа</h4>
+          <p>Роберт Кийосаки</p>
+        </div>
+        <div class="resource-card">
+          <i class="fas fa-chalkboard-user"></i>
+          <h4>Самый богатый человек в Вавилоне</h4>
+          <p>Джордж Клейсон</p>
+        </div>
+        <div class="resource-card">
+          <i class="fab fa-youtube"></i>
+          <h4>YouTube: Фин-Культ</h4>
+          <a href="#">смотреть</a>
+        </div>
+        <div class="resource-card">
+          <i class="fas fa-globe"></i>
+          <h4>Блог Финтолк</h4>
+          <a href="#">читать</a>
+        </div>
+      </div>
+      <p style="text-align:center; margin-top: 36px; color:#2c5a6e;"><i class="fas fa-graduation-cap"></i> Знания — лучшая инвестиция. Начните с одной книги или статьи сегодня.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p><i class="fas fa-heart" style="color:#5fa88a;"></i> FinStart — ваш первый шаг к финансовой независимости</p>
+    <div class="footer-disclaimer">
+      ⚠️ Вся информация носит образовательный характер и не является индивидуальной инвестиционной рекомендацией. Перед принятием решений проконсультируйтесь со специалистом.
+    </div>
+    <p style="margin-top: 20px; font-size:0.8rem;">© 2025 FinStart | Для начинающих инвесторов и всех, кто хочет управлять бюджетом</p>
+  </div>
+</footer>
+
+<script>
+  // Compound interest calculator with monthly contributions (end of month)
+  function calculateCompoundInterest() {
+    let initial = parseFloat(document.getElementById('initialAmount').value);
+    let monthly = parseFloat(document.getElementById('monthlyContribution').value);
+    let years = parseFloat(document.getElementById('years').value);
+    let annualRate = parseFloat(document.getElementById('interestRate').value);
+
+    if (isNaN(initial)) initial = 0;
+    if (isNaN(monthly)) monthly = 0;
+    if (isNaN(years)) years = 0;
+    if (isNaN(annualRate)) annualRate = 0;
+
+    if (years < 0) years = 0;
+    if (annualRate < 0) annualRate = 0;
+    if (initial < 0) initial = 0;
+    if (monthly < 0) monthly = 0;
+
+    const monthlyRate = annualRate / 100 / 12;
+    const months = years * 12;
+
+    let futureValue = 0;
+
+    if (monthlyRate === 0) {
+      // Без процентов — просто сумма
+      futureValue = initial + monthly * months;
+    } else {
+      // Будущая стоимость начального капитала с ежемесячной капитализацией
+      const futureInitial = initial * Math.pow(1 + monthlyRate, months);
+      // Будущая стоимость регулярных взносов (аннуитет постнумерандо)
+      const futureContributions = monthly * ( (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate );
+      futureValue = futureInitial + futureContributions;
+    }
+
+    // Форматирование с пробелами как разделителями тысяч
+    const formatted = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(futureValue);
+    document.getElementById('futureValue').innerHTML = formatted;
+  }
+
+  // Button event
+  document.getElementById('calculateBtn').addEventListener('click', calculateCompoundInterest);
+  window.addEventListener('load', () => {
+    calculateCompoundInterest();
+  });
+
+  // ---------- FAQ Accordion ----------
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const questionDiv = item.querySelector('.faq-question');
+    questionDiv.addEventListener('click', () => {
+      // закрыть другие? Можно чтобы открывался только один, но для UX удобнее мультиаккордеон, но сделаем toggle для каждого
+      item.classList.toggle('active');
+    });
+  });
+
+  // ---------- Совет дня (рандомный финансовый совет) ----------
+  const tipsArray = [
+    "💡 Начните вести учёт расходов: даже 3 минуты в день помогут увидеть, куда уходят деньги.",
+    "💡 Откладывайте 10% от каждого дохода прежде, чем потратить — «заплатите себе первому».",
+    "💡 Избегайте кредитов на вещи, которые теряют в цене (гаджеты, одежда). Используйте кредит только для развития или крайней нужды.",
+    "💡 Подушка безопасности = 3–6 месячных расходов. Храните на отдельном счёте без карты.",
+    "💡 Чем раньше начнёте инвестировать, тем мощнее эффект сложного процента. Даже 1000₽ в месяц меняют будущее!",
+    "💡 Правило 72: чтобы узнать, за сколько лет ваши инвестиции удвоятся, разделите 72 на годовую процентную доходность.",
+    "💡 Автоматизируйте накопления: настройте автоплатёж в день зарплаты на сберегательный счёт.",
+    "💡 Финансовая цель должна быть конкретной: «накопить 300 000₽ на обучение за 2 года» — отлично!"
+  ];
+  let lastTipIndex = -1;
+  function showRandomTip() {
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * tipsArray.length);
+    } while (newIndex === lastTipIndex && tipsArray.length > 1);
+    lastTipIndex = newIndex;
+    alert(tipsArray[newIndex]);
+  }
+  const tipBtn = document.getElementById('tipBtn');
+  if (tipBtn) {
+    tipBtn.addEventListener('click', showRandomTip);
+  }
+
+  // Дополнительно: обработка input полей для более быстрого расчета (real-time)
+  const inputs = ['initialAmount', 'monthlyContribution', 'years', 'interestRate'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', () => calculateCompoundInterest());
+    }
+  });
+
+  // Плавная навигация для ссылок (улучшение)
+  document.querySelectorAll('.nav-links a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
